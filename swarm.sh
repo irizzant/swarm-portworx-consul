@@ -7,7 +7,7 @@ export DIGITALOCEAN_SIZE=2gb
 export DIGITALOCEAN_PRIVATE_NETWORKING=true
 
 for i in 1 2 3; do 
-    run_or_exit "Creating node-$i" "docker-machine create -d digitalocean node-$i"	
+    run_or_exit "Creating node-$i" "docker-machine create -d virtualbox --virtualbox-disk-size 5000 node-$i"	
 done
 
 manager_ip=$(docker-machine ssh node-1 ifconfig eth1 | grep "inet addr" | cut -d ':' -f 2 | cut -d ' ' -f 1)
